@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import requests
 import inquirer
+import os
 
 def run():
     url = 'https://raw.githubusercontent.com/fabianofernandeszup/backend-formulas-template-engine/main/templates.txt'
@@ -23,6 +24,7 @@ def run():
         ]
     answer = inquirer.prompt(question)
     templates = answer["templates"]
+    os.remove("templates.txt")
 
     for t in templates:
         print(f"🛠  \033[36m{t}\033[0m description: \033[0m [...]")

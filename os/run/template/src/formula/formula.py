@@ -1,15 +1,38 @@
 #!/usr/bin/python3
-from colored import fg, attr
-from distutils.util import strtobool
+#!/usr/bin/python3
+import requests
+import inquirer
+import git
+import os
 
+def run():
+    url = 'https://raw.githubusercontent.com/fabianofernandeszup/backend-formulas-template-engine/main/templates.txt'
+    r = requests.get(url, allow_redirects=True)
 
-def Run(input1, input2, input3, input4):
-    print("Hello World!")
-    print(f"{fg(2)}My name is {input1}.{attr(0)}")
-    if strtobool(input2):
-        print(f"{fg(3)}I've already created formulas using Ritchie.{attr(0)}")
-    else:
-        s = "I'm excited in creating new formulas using Ritchie."
-        print(f"{fg(3)}'{s}'.{attr(0)}")
-    print(f"{fg(1)}Today, I want to automate {input3}.{attr(0)}")
-    print(f"{fg(3)}My secret is '{input4}'.{attr(0)}")
+    open('templates.txt', 'wb').write(r.content)
+    file1 = open('templates.txt', 'r')
+    Lines = file1.readlines()
+    StripLines = []
+
+    for line in Lines:
+        stripline = line.strip()
+        StripLines.append(stripline)
+
+    question = [
+            inquirer.Checkbox("templates",
+                    message = f"\033[1mSelect templates:\033[0m ",
+                    choices = StripLines,
+                ),
+        ]
+    answer = inquirer.prompt(question)
+    templates = answer["templates"]
+    os.remove("templates.txt")
+
+    for t in templates:
+        print(f"🛠  \033[36mCloning {t}\033[0m repository...\033[0m")
+        gitRepoUrl = t + ".git"
+        print(f"URL: {gitRepoUrl}")
+        git.Git("").clone(gitRepoUrl)
+        print(f"Repository cloned 🚀\033[0m\n")
+
+    print(f"Selected templates cloned successfully ✅")
