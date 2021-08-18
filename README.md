@@ -10,6 +10,11 @@ This repository contains Ritchie formulas which can be executed by the [ritchie-
 
 For more information, check the [Ritchie CLI documentation](https://docs.ritchiecli.io)
 
+## Formulas in this repository
+
+- [`rit os list template`](https://github.com/fabianofernandeszup/template-engine/tree/main/os/list/template)
+- [`rit os run template`](https://github.com/fabianofernandeszup/template-engine/tree/main/os/run/template)
+
 ## Import repository to use formulas
 
 To import this repository, you need [Ritchie CLI installed](https://docs.ritchiecli.io/getting-started/installation)
@@ -21,22 +26,22 @@ Then, you can use the `rit add repo` as below:
  Select your provider:
   > Github
     Gilab
- Repository name: {{some_repo_name}}
- Repository URL: {{this_repo_url}}
+ Repository name: Template-Engine
+ Repository URL: https://github.com/fabianofernandeszup/template-engine
  Is a private repository?
     no
   > yes
  Personal access tokens: {{git_personal_token}}
  Select a tag version:
-  > 1.0.1
-    1.0.0
+    1.0.1
+  > 1.0.0
  Set the priority: X (the lower the number, the higher the priority)
 ```
 
 Or by using this command:
 
 ```bash
-rit add repo --provider="Github" --name="{{some_repo_name}}" --repoUrl="{{this_repo_url}}" --priority=1
+rit add repo --provider="Github" --name="Template-Engine" --repoUrl="https://github.com/fabianofernandeszup/template-engine" --priority=1 --tag="1.0.0"
 ```
 
 Finally, you can check if the repository has been imported correctly by executing the `rit list repo` command.
