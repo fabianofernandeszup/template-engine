@@ -4,8 +4,8 @@
 block_cipher = None
 
 
-a = Analysis(['src\\main.py'],
-             pathex=['G:\\Repositórios\\template-engine\\os\\run\\template'],
+a = Analysis(['src/main.py'],
+             pathex=['/home/fabiano.fernandes/www/orange/mvp-os-cli/formula-template-engine/os/run/template'],
              binaries=[],
              datas=[],
              hiddenimports=[],
