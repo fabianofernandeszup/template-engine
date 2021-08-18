@@ -9,3 +9,5 @@ rit os list templates
 ```
 
 ## Demonstration
+
+![rit os list template](https://user-images.githubusercontent.com/22433243/129926715-459da217-aa7e-43d2-837b-b01b29603c66.png)
