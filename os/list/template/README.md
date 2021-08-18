@@ -5,7 +5,7 @@ POC of a formula reading a file online to extract a list of option for the user 
 ## Command
 
 ```bash
-rit os list templates
+rit os list template
 ```
 
 ## Demonstration
