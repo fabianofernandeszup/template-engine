@@ -1,22 +1,33 @@
 #!/bin/sh
 
 BINARY_NAME=run.sh
-BINARY_NAME_WINDOWS=run.bat
+BINARY_MAIN=main
 BIN_FOLDER=bin
+SRC_FOLDER=src
 
 checkCommand () {
-  if ! command -v "$1" >/dev/null; then
-    echo "$1 required" >&2;
+	if ! command -v "$1" >/dev/null; then
+    	echo "$1 required" >&2;
 		exit 1;
 	fi
 }
 
 #python-build:
-	checkCommand python3
 	checkCommand pip3
+
+	pip3 install pyinstaller
+	checkCommand pyinstaller
+
 	mkdir -p $BIN_FOLDER
-	cp -r src/* $BIN_FOLDER
-	pip3 install -r $BIN_FOLDER/requirements.txt --user --disable-pip-version-check
+	cp -r src/requirements.txt $BIN_FOLDER
+	pip3 install -r $SRC_FOLDER/requirements.txt --user --disable-pip-version-check
+
+	pyinstaller -y --distpath $BIN_FOLDER --onefile --clean $SRC_FOLDER/main.py
+
+
+#clean-build-files
+	rm -rf src/__pycache__
+	rm -rf build
 
 #sh_unix:
 	{
@@ -24,15 +35,12 @@ checkCommand () {
 	echo "if [ -f /.dockerenv ] ; then"
 	echo "pip3 install -r \$(dirname \"\$0\")/requirements.txt --user --disable-pip-version-check >> /dev/null"
 	echo "fi"
-	echo "python3 \$(dirname \"\$0\")/main.py"
+	echo "cd \$(dirname \"\$0\")"
+	echo "./main"
 	} >> $BIN_FOLDER/$BINARY_NAME
-	chmod +x $BIN_FOLDER/$BINARY_NAME
 
-#bat_windows:
-	{
-	echo "@ECHO OFF"
-	echo "python main.py"
-	} >> $BIN_FOLDER/$BINARY_NAME_WINDOWS
+	chmod +x $BIN_FOLDER/$BINARY_NAME
+	chmod +x $BIN_FOLDER/$BINARY_MAIN
 
 #docker:
 	cp Dockerfile set_umask.sh $BIN_FOLDER
