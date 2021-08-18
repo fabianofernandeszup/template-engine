@@ -29,9 +29,8 @@ Then, you can use the `rit add repo` as below:
  Repository name: Template-Engine
  Repository URL: https://github.com/fabianofernandeszup/template-engine
  Is a private repository?
-    no
-  > yes
- Personal access tokens: {{git_personal_token}}
+  > no
+    yes
  Select a tag version:
     1.0.1
   > 1.0.0
