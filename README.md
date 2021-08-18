@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013-->
 
-# Ritchie Formula Repo
+# Template Engine
 
 ![Rit banner](/docs/img/ritchie-banner.png)
 
@@ -67,4 +67,3 @@ and commit your implementation: `git commit -m '<commit_message>`
 6. Open a pull request on the repository for analysis.
 
 - [Contribute to the Ritchie community](https://github.com/ZupIT/ritchie-formulas/blob/master/CONTRIBUTING.md)
-# template-engine
