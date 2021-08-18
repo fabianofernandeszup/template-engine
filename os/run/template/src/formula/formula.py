@@ -18,6 +18,9 @@ def run():
         stripline = line.strip()
         StripLines.append(stripline)
 
+    file1.close()
+    os.remove("templates.txt")
+
     question = [
             inquirer.Checkbox("templates",
                     message = f"\033[1mSelect templates:\033[0m ",
@@ -26,7 +29,6 @@ def run():
         ]
     answer = inquirer.prompt(question)
     templates = answer["templates"]
-    os.remove("templates.txt")
 
     for t in templates:
         print(f"🛠  \033[36mCloning {t}\033[0m repository...\033[0m")
