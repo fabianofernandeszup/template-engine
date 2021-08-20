@@ -37,7 +37,7 @@ checkCommand () {
 	echo "fi"
 	echo "cd \$(dirname \"\$0\")"
 	echo "./main"
-	} >> $BIN_FOLDER/$BINARY_NAME
+	} > $BIN_FOLDER/$BINARY_NAME
 
 	chmod +x $BIN_FOLDER/$BINARY_NAME
 	chmod +x $BIN_FOLDER/$BINARY_MAIN
